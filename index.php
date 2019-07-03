@@ -55,7 +55,6 @@ $f3->route('GET|POST /character', function ($f3) {
 });
 
 $f3->route('GET|POST /guide', function ($f3) {
-
     $template = new Template();
     echo $template->render();
 });
