@@ -13,12 +13,7 @@ class Player
     private $_weapons;
     private $_shield;
     private $_ac;
-    private $_str;
     private $_dex;
-    private $_con;
-    private $_wis;
-    private $_int;
-    private $_cha;
 
     /**
      * Player constructor.
@@ -35,33 +30,7 @@ class Player
         $this->_name = $_name;
         $this->_class = $_class;
         $this->_race = $_race;
-        if ($_armor == 'Unarmored'){
-            $this->_armor = 0;
-        }
-        elseif ($_armor == 'Padded' || $_armor == 'Leather') {
-            $this->_armor = 11;
-        }
-        elseif ($_armor == 'Studded Leather' || $_armor == 'Hide') {
-            $this->_armor = 12;
-        }
-        elseif ($_armor == 'Chain shirt') {
-            $this->_armor = 13;
-        }
-        elseif ($_armor == 'Scale mail' || $_armor == 'Ring mail' || $_armor == 'Breastplate'){
-            $this->_armor = 14;
-        }
-        elseif ($_armor == 'Half plate') {
-            $this->_armor = 15;
-        }
-        elseif ($_armor == 'Chain mail') {
-            $this->_armor = 16;
-        }
-        elseif ($_armor == "Splint") {
-            $this->_armor = 17;
-        }
-        else{
-            $this->_armor = 18;
-        }
+        $this->armorSelect($_armor);
         $this->_background = $_background;
         $this->_weapons = $_weapons;
         if($shield == 'yes'){
@@ -74,6 +43,32 @@ class Player
 
     public function calcAC(){
         $this->_ac = $this->_shield + $this->_armor + $this->_dex;
+    }
+
+    /**
+     * @param $_armor
+     */
+    public function armorSelect($_armor)
+    {
+        if ($_armor == 'Unarmored') {
+            $this->_armor = 0;
+        } elseif ($_armor == 'Padded' || $_armor == 'Leather') {
+            $this->_armor = 11;
+        } elseif ($_armor == 'Studded Leather' || $_armor == 'Hide') {
+            $this->_armor = 12;
+        } elseif ($_armor == 'Chain shirt') {
+            $this->_armor = 13;
+        } elseif ($_armor == 'Scale mail' || $_armor == 'Ring mail' || $_armor == 'Breastplate') {
+            $this->_armor = 14;
+        } elseif ($_armor == 'Half plate') {
+            $this->_armor = 15;
+        } elseif ($_armor == 'Chain mail') {
+            $this->_armor = 16;
+        } elseif ($_armor == "Splint") {
+            $this->_armor = 17;
+        } else {
+            $this->_armor = 18;
+        }
     }
 
 
