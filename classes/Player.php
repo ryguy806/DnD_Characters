@@ -13,7 +13,6 @@ class Player
     private $_weapons;
     private $_shield;
     private $_ac;
-    private $_dex;
 
     /**
      * Player constructor.
@@ -39,10 +38,7 @@ class Player
         else{
             $this->_shield = 0;
         }
-    }
-
-    public function calcAC(){
-        $this->_ac = $this->_shield + $this->_armor + $this->_dex;
+        $this->calcAC();
     }
 
     /**
@@ -71,5 +67,116 @@ class Player
         }
     }
 
+    public function getShield(){
+        return $this->_shield;
+    }
+
+    public function setShield($shield){
+        $this->_shield = $shield;
+    }
+
+    public function getArmor(){
+        return $this->_armor;
+    }
+
+    public function setArmor($armor){
+        $this->_armor = $armor;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->_name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->_name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClass()
+    {
+        return $this->_class;
+    }
+
+    /**
+     * @param mixed $class
+     */
+    public function setClass($class)
+    {
+        $this->_class = $class;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRace()
+    {
+        return $this->_race;
+    }
+
+    /**
+     * @param mixed $race
+     */
+    public function setRace($race)
+    {
+        $this->_race = $race;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getBackground()
+    {
+        return $this->_background;
+    }
+
+    /**
+     * @param mixed $background
+     */
+    public function setBackground($background)
+    {
+        $this->_background = $background;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getWeapons()
+    {
+        return $this->_weapons;
+    }
+
+    /**
+     * @param mixed $weapons
+     */
+    public function setWeapons($weapons)
+    {
+        $this->_weapons = $weapons;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAc()
+    {
+        return $this->_ac;
+    }
+
+    /**
+     * @param mixed $ac
+     */
+    public function setAc($ac)
+    {
+        $this->_ac = $ac;
+    }
 
 }
