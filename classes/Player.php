@@ -2,6 +2,9 @@
 
 /**
  * Class Player This class is the main holding area for the player's information.
+ *
+ * Ryan Guelzo
+ * version 1
  */
 class Player
 {
