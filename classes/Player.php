@@ -13,6 +13,12 @@ class Player
     private $_weapons;
     private $_shield;
     private $_ac;
+    private $_dex;
+    private $_str;
+    private $_con;
+    private $_wis;
+    private $_int;
+    private $_cha;
 
     /**
      * Player constructor.
@@ -38,13 +44,19 @@ class Player
         else{
             $this->_shield = 0;
         }
-        $this->calcAC();
+        $this->setStats();
+        $this->_ac = $this->calcAC();
+
+    }
+
+    private function calcAC(){
+        return $this->_shield + $this->_dex + $this->_armor;
     }
 
     /**
      * @param $_armor
      */
-    public function armorSelect($_armor)
+    private function armorSelect($_armor)
     {
         if ($_armor == 'Unarmored') {
             $this->_armor = 0;
@@ -67,116 +79,23 @@ class Player
         }
     }
 
-    public function getShield(){
-        return $this->_shield;
+    private function setStats(){
+        $this->_str = $this->statRoller();
+        $this->_dex = $this->statRoller();
+        $this->_con = $this->statRoller();
+        $this->_wis = $this->statRoller();
+        $this->_int = $this->statRoller();
+        $this->_cha = $this->statRoller();
     }
 
-    public function setShield($shield){
-        $this->_shield = $shield;
-    }
+    private function statRoller(){
+        $nums = array(mt_rand(1, 6), mt_rand(1, 6), mt_rand(1, 6), mt_rand(1, 6));
 
-    public function getArmor(){
-        return $this->_armor;
-    }
+        $total = $nums[1] + $nums[2] + $nums[3] + $nums[4];
 
-    public function setArmor($armor){
-        $this->_armor = $armor;
-    }
+        $total = $total - min($nums);
 
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->_name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name)
-    {
-        $this->_name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getClass()
-    {
-        return $this->_class;
-    }
-
-    /**
-     * @param mixed $class
-     */
-    public function setClass($class)
-    {
-        $this->_class = $class;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getRace()
-    {
-        return $this->_race;
-    }
-
-    /**
-     * @param mixed $race
-     */
-    public function setRace($race)
-    {
-        $this->_race = $race;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getBackground()
-    {
-        return $this->_background;
-    }
-
-    /**
-     * @param mixed $background
-     */
-    public function setBackground($background)
-    {
-        $this->_background = $background;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getWeapons()
-    {
-        return $this->_weapons;
-    }
-
-    /**
-     * @param mixed $weapons
-     */
-    public function setWeapons($weapons)
-    {
-        $this->_weapons = $weapons;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAc()
-    {
-        return $this->_ac;
-    }
-
-    /**
-     * @param mixed $ac
-     */
-    public function setAc($ac)
-    {
-        $this->_ac = $ac;
+        return $total;
     }
 
 }
