@@ -43,7 +43,7 @@ class Player
             $this->_name = $_name;
             $this->_class = $_class;
             $this->_race = $_race;
-            $this-> _armor = armorSelect($_armor);
+            $this-> _armor = $this->armorSelect($_armor);
             $this->_background = $_background;
             $this->_weapons = $_weapons;
             if($shield == 'yes'){
