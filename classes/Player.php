@@ -33,23 +33,28 @@ class Player
      * @param $_weapons
      * @param $shield
      */
-    public function __construct($_name, $_class, $_race, $_armor, $_background, $_weapons, $shield)
+    public function __construct($_name = null, $_class = null, $_race = null, $_armor = null, $_background = null,
+                                $_weapons = null, $shield = null)
     {
-        $this->_name = $_name;
-        $this->_class = $_class;
-        $this->_race = $_race;
-        $this->armorSelect($_armor);
-        $this->_background = $_background;
-        $this->_weapons = $_weapons;
-        if($shield == 'yes'){
-            $this->_shield = 2;
+        if($_name == null){
+            $this->randomCharacter();
         }
         else{
-            $this->_shield = 0;
+            $this->_name = $_name;
+            $this->_class = $_class;
+            $this->_race = $_race;
+            $this-> _armor = armorSelect($_armor);
+            $this->_background = $_background;
+            $this->_weapons = $_weapons;
+            if($shield == 'yes'){
+                $this->_shield = 2;
+            }
+            else{
+                $this->_shield = 0;
+            }
         }
         $this->setStats();
         $this->_ac = $this->calcAC();
-
     }
 
     private function calcAC(){
@@ -58,27 +63,28 @@ class Player
 
     /**
      * @param $_armor
+     * @return int the value the armor adds.
      */
     private function armorSelect($_armor)
     {
         if ($_armor == 'Unarmored') {
-            $this->_armor = 0;
+            return 0;
         } elseif ($_armor == 'Padded' || $_armor == 'Leather') {
-            $this->_armor = 11;
+            return 11;
         } elseif ($_armor == 'Studded Leather' || $_armor == 'Hide') {
-            $this->_armor = 12;
+            return 12;
         } elseif ($_armor == 'Chain shirt') {
-            $this->_armor = 13;
+            return 13;
         } elseif ($_armor == 'Scale mail' || $_armor == 'Ring mail' || $_armor == 'Breastplate') {
-            $this->_armor = 14;
+            return 14;
         } elseif ($_armor == 'Half plate') {
-            $this->_armor = 15;
+            return 15;
         } elseif ($_armor == 'Chain mail') {
-            $this->_armor = 16;
+            return 16;
         } elseif ($_armor == "Splint") {
-            $this->_armor = 17;
+            return 17;
         } else {
-            $this->_armor = 18;
+            return 18;
         }
     }
 
@@ -99,6 +105,20 @@ class Player
         $total = $total - min($nums);
 
         return $total;
+    }
+
+    public function randomCharacter(){
+        $backgrounds = array("Acolyte", "Charlatan", "Criminal", "Entertainer", "Folk Hero", "Guild Artisan", "Hermit",
+            "Noble", "Outlander", "Sage", "Sailor", "Soldier", "Urchin");
+        $classes = array("Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue",
+            "Sorcerer", "Warlock", "Wizard");
+        $races = array("Dragonborn", "Dwarf", "Elf", "Gnome", "Halfling", "Half-Elf", "Half-Orc", "Human", "Tiefling");
+        $weapons = array();
+        $shield = array(true, false);
+        $armor = array();
+        $this->_class = $classes[mt_rand(0, 11)];
+        $this->_background = $backgrounds[mt_rand(0, 12)];
+        $this->_race = $races[mt_rand(0, 8)];
     }
 
 }
