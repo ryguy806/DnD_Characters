@@ -113,12 +113,20 @@ class Player
         $classes = array("Barbarian", "Bard", "Cleric", "Druid", "Fighter", "Monk", "Paladin", "Ranger", "Rogue",
             "Sorcerer", "Warlock", "Wizard");
         $races = array("Dragonborn", "Dwarf", "Elf", "Gnome", "Halfling", "Half-Elf", "Half-Orc", "Human", "Tiefling");
-        $weapons = array();
+        $weapons = array("Battleaxe", "Blowgun", "Club", "Dagger", "Dart", "Flail", "Glaive", "Greataxe", "Greatclub",
+            "Greatsword", "Halberd", "Handaxe", "Hand Crossbow", "Heavy Crossbow", "Javalin", "Lance", "Light Crossbow",
+            "Light Hammer", "Longbow", "Longsword", "Mace", "Maul", "Morningstar", "Net", "Pike", "Quarterstaff",
+            "Rapier", "Scimitar", "Shortbow", "Shortsword", "Sickle", "Spear", "Sling", "Trident", "Warpick",
+            "Warhammer", "Whip");
         $shield = array(true, false);
-        $armor = array();
+        $armor = array("Breastplate", "Chain Mail", "Chain Shirt", "Half Plate", "Hide", "Leather", "Padded", "Plate",
+            "Ring Mail", "Scale Mail", "Splint", "Studded Leather", "Unarmored");
         $this->_class = $classes[mt_rand(0, 11)];
         $this->_background = $backgrounds[mt_rand(0, 12)];
         $this->_race = $races[mt_rand(0, 8)];
+        $this->_weapons = $weapons[mt_rand(0, 36)];
+        $this->_shield = $shield[mt_rand(0,1)];
+        $this->_armor = $this->armorSelect($armor[mt_rand(0, 12)]);
     }
 
 }
