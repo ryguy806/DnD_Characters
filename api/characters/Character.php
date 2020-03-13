@@ -56,4 +56,31 @@ class Character
         }
         return false;
     }
+
+    function readOne(){
+        $query = "SELECT
+            name, race, class, str, dex, con, wis, int, cha, initiative
+            LIMIT
+            0,1;
+        ";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, 'name');
+
+        $stmt->execute();
+
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        $this->_name = $row['name'];
+        $this->_race = $row['race'];
+        $this->_class = $row['class'];
+        $this->_str = $row['str'];
+        $this->_dex = $row['dex'];
+        $this->_con = $row['con'];
+        $this->_wis = $row['wis'];
+        $this->_int = $row['int'];
+        $this->_cha = $row['cha'];
+        $this->_initiative = $row['initiative'];
+    }
 }
