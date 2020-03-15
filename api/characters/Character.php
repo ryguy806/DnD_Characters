@@ -86,7 +86,7 @@ class Character
 
     function update(){
         $query = "UPDATE
-                        ". this.$this->table_name . "
+                        ". $this->table_name . "
                     SET
                         race = :race,
                         class = :class,
@@ -99,5 +99,49 @@ class Character
                         initiative = :initiative
                     WHERE
                         name = :name";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->_name = htmlspecialchars(strip_tags($this->_name));
+        $this->_race = htmlspecialchars(strip_tags($this->_race));
+        $this->_class = htmlspecialchars(strip_tags($this->_class));
+        $this->_str = htmlspecialchars(strip_tags($this->_str));
+        $this->_dex = htmlspecialchars(strip_tags($this->_dex));
+        $this->_con = htmlspecialchars(strip_tags($this->_con));
+        $this->_wis = htmlspecialchars(strip_tags($this->_wis));
+        $this->_int = htmlspecialchars(strip_tags($this->_int));
+        $this->_cha = htmlspecialchars(strip_tags($this->_cha));
+        $this->_initiative = htmlspecialchars(strip_tags($this->_initiative));
+
+        $stmt->bindParam(':name', $this->_name);
+        $stmt->bindParam(':race', $this->_race);
+        $stmt->bindParam(':class', $this->_class);
+        $stmt->bindParam(':str', $this->_str);
+        $stmt->bindParam(':dex', $this->_dex);
+        $stmt->bindParam(':con', $this->_con);
+        $stmt->bindParam(':wis', $this->_wis);
+        $stmt->bindParam(':int', $this->_int);
+        $stmt->bindParam(':cha', $this->_cha);
+        $stmt->bindParam(':initiative', $this->_initiative);
+
+        if($stmt->exwcute()){
+            return true;
+        }
+        return false;
+    }
+
+    function delete(){
+        $query = "DELETE FROM " . $this->$this->table_name . " WHERE name = ?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $this->_name = htmlspecialchars(strip_tags($this->_name));
+
+        $stmt->bindParam(1, $this->_name);
+
+        if($stmt->execute()){
+            return true;
+        }
+        return false;
     }
 }
