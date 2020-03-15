@@ -144,4 +144,27 @@ class Character
         }
         return false;
     }
+
+    function search($keywords){
+        $query = "SELECT
+                    'name', 'race', 'class', 'str', 'dex', 'con', 'wis', 'int', 'cha', 'initiative'
+                  FROM
+                    " . $this->table_name . "
+                  WHERE
+                    'name' LIKE ? OR 'race' LIKE ? OR 'class' LIKE ?
+                  ORDER BY 
+                    'initiative' DESC";
+        $stmt = $this->conn->prepare();
+
+        $keywords = htmlspecialchars(strip_tags($keywords));
+        $keywords = "%{keywords}";
+
+        $stmt->bindParam(1, $keywords);
+        $stmt->bindParam(2, $keywords);
+        $stmt->bindParam(3, $keywords);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
 }
