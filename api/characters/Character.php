@@ -83,4 +83,21 @@ class Character
         $this->_cha = $row['cha'];
         $this->_initiative = $row['initiative'];
     }
+
+    function update(){
+        $query = "UPDATE
+                        ". this.$this->table_name . "
+                    SET
+                        race = :race,
+                        class = :class,
+                        str = :str,
+                        dex = :dex,
+                        con = :con,
+                        wis = :wis,
+                        int = :int,
+                        cha = :cha,
+                        initiative = :initiative
+                    WHERE
+                        name = :name";
+    }
 }
