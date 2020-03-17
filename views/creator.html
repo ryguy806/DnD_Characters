@@ -9,11 +9,87 @@
         <form>
             <label for="name">Character Name</label>
             <input type="text" id="name">
-            <label for="race">Character Race</label>
-            <input type="text" id="race">
-            <label for="class">Character Class</label>
-            <input type="text" id="class">
+            <select id="races" name="race_choice">
+            </select>
+
+            <select id="classes" name="class_choice">
+            </select>
         </form>
     </div>
 </body>
+<script>
+    function getRaces() {
+        let dropdown = document.getElementById('race');
+        dropdown.length = 0;
+
+        let defaultOption = document.createElement('option');
+        defaultOption.text = 'Choose Race...';
+
+        dropdown.add(defaultOption);
+        dropdown.selectedIndex = 0;
+
+        const url = 'http://dnd5eapi.co/api/races/';
+
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+
+        request.onload = function () {
+            if (request.status === 200) {
+                const data = JSON.parse(request.responseText);
+                let option;
+                for (let i = 0; i < data.length; i++) {
+                    option = document.createElement('option');
+                    option.text = data[i].name;
+                    option.value = data[i].index;
+                    dropdown.add(option);
+                }
+            } else {
+                // Reached the server, but it returned an error
+            }
+        }
+
+        request.onerror = function () {
+            console.error('An error occurred fetching the data from ' + url);
+        };
+
+        request.send();
+    }
+
+    function getClasses() {
+        let dropdown = document.getElementById('classes');
+        dropdown.length = 0;
+
+        let defaultOption = document.createElement('option');
+        defaultOption.text = 'Choose Class...';
+
+        dropdown.add(defaultOption);
+        dropdown.selectedIndex = 0;
+
+        const url = 'http://dnd5eapi.co/api/classes/';
+
+        const request = new XMLHttpRequest();
+        request.open('GET', url, true);
+
+        request.onload = function () {
+            if (request.status === 200) {
+                const data = JSON.parse(request.responseText);
+                let option;
+                for (let i = 0; i < data.length; i++) {
+                    option = document.createElement('option');
+                    option.text = data[i].name;
+                    option.value = data[i].index;
+                    dropdown.add(option);
+                }
+            } else {
+                // Reached the server, but it returned an error
+            }
+        }
+
+        request.onerror = function () {
+            console.error('An error occurred fetching the data from ' + url);
+        };
+
+        request.send();
+    }
+</script>
 </html>
