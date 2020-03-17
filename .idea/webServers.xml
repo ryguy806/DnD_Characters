@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b8caf1f6-7f77-443e-98db-03f9742752ef" name="dndServer" url="http://localhost">
+        <fileTransfer port="0" mountedRoot="C:\Users\RyGuy8806\Documents\Java\School\IT 372 Software as a Service\DnD_Characters" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>

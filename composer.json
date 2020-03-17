@@ -1,12 +1,15 @@
 {
-  "name": "rguelzo/DnD_Characters",
-  "authors": [
+  "name": "localhost/DnD Character",
+  "authors":
+  [
     {
       "name": "Ryan Guelzo",
       "email": "rguelzo@mail.greenriver.edu"
     }
   ],
   "require": {
-    "bcosca/fatfree-core": "dev-master"
+    "monolog/monolog": "1.0.*",
+    "bcosca/fatfree-core": "dev-master",
+    "ext-json": "*"
   }
 }
