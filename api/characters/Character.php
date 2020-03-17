@@ -22,7 +22,7 @@ class Character
         $this->conn=$db;
     }
 
-    function create(){
+    public function create(){
         $query = "INSERT INTO
                 " . $this->table_name . "
             SET
@@ -57,7 +57,7 @@ class Character
         return false;
     }
 
-    function readOne(){
+    public function readOne(){
         $query = "SELECT
             name, race, class, str, dex, con, wis, int, cha, initiative
             LIMIT
@@ -84,7 +84,7 @@ class Character
         $this->_initiative = $row['initiative'];
     }
 
-    function update(){
+    public function update(){
         $query = "UPDATE
                         ". $this->table_name . "
                     SET
@@ -130,7 +130,7 @@ class Character
         return false;
     }
 
-    function delete(){
+    public function delete(){
         $query = "DELETE FROM " . $this->$this->table_name . " WHERE name = ?";
 
         $stmt = $this->conn->prepare($query);
@@ -145,7 +145,7 @@ class Character
         return false;
     }
 
-    function search($keywords){
+    public function search($keywords){
         $query = "SELECT
                     'name', 'race', 'class', 'str', 'dex', 'con', 'wis', 'int', 'cha', 'initiative'
                   FROM
@@ -167,4 +167,29 @@ class Character
 
         return $stmt;
     }
+
+    public function readPaging($from_record_num, $records_per_page){
+        $query = "SELECT FROM " . $this->table_name . " ORDER BY 'name' DESC LIMIT ?, ?";
+
+        $stmt = $this->conn->prepare($query);
+
+        $stmt->bindParam(1, $from_record_num, PDO::PARAM_INT);
+        $stmt->bindParam(2, $records_per_page, PDO::PARAM_INT);
+
+        $stmt->execute();
+
+        return $stmt;
+    }
+
+    public function count(){
+        $query = "SELECT COUNT(*) as total_rows FROM" . $this->table_name . "";
+
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['total_rows'];
+    }
+
+
 }
