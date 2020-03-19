@@ -17,9 +17,18 @@ class Character
     public $_cha;
     public $_initiative;
 
-    public function __construct($db)
+    public function __construct($db, $name, $race, $class, $str, $dex, $con, $wis, $int, $cha)
     {
         $this->conn=$db;
+        $this->_name = $name;
+        $this->_race = $race;
+        $this->_class = $class;
+        $this->_str = $str;
+        $this->_dex = $dex;
+        $this->_con = $con;
+        $this->_wis = $wis;
+        $this->_int = $int;
+        $this->_cha = $cha;
     }
 
     public function create(){
