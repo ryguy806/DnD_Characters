@@ -60,19 +60,16 @@ else{
     );
 }
 
-// read products
+// read characters
 function read(){
 
     // select all query
     $query = "SELECT
-                c.name as category_name, p.name, p.race, p.class, p.str, p.dex, p.con, p.wis, p.int, p.cha
+                *
             FROM
                 " . $this->table_name . " p
-                LEFT JOIN
-                    categories c
-                        ON p.category_id = c.id
             ORDER BY
-                p.created DESC";
+                'initiative' DESC";
 
     // prepare query statement
     $stmt = $this->conn->prepare($query);

@@ -18,12 +18,6 @@ $data = json_decode(file_get_contents("php://input"));
 $character->_name = $data->name;
 $character->_race = $data->race;
 $character->_class = $data->class;
-$character->_str = $data->str;
-$character->_dex = $data->dex;
-$character->_con = $data->con;
-$character->_wis = $data->wis;
-$character->_int = $data->int;
-$character->_cha = $data->cha;
 $character->_initiative = $data->initiative;
 
 if($character->update()){

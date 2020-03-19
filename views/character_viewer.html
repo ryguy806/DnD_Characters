@@ -6,8 +6,32 @@
 </head>
 <body>
     <h1>Character List</h1>
-    <div name="character_list">
-
+    <div>
+        <table id="list" class="display">
+            <thead>
+                <tr>
+                    <th>Character Name</th>
+                    <th>Character Race</th>
+                    <th>Character Class</th>
+                    <th>Character Initiative</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </body>
+
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.js"></script>
+
+<script>
+    $(document).ready( function () {
+        $('#list').DataTable();
+    } );
+</script>
 </html>

@@ -27,12 +27,7 @@ if($num > 0){
         $character_item = array(
             "name" => $name,
             "race" => $race,
-            "str" => $str,
-            "dex" => $dex,
-            "con" => $con,
-            "wis" => $wis,
-            "int" => $int,
-            "cha" => $cha,
+            "class" => $class,
             "initiative" => $initiative
         );
 

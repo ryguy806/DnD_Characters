@@ -22,12 +22,6 @@ if($character->_name != null){
         "name" => $character->_name,
         "race" => $character->_race,
         "class" => $character->_class,
-        "str" => $character->_str,
-        "dex" => $character->_dex,
-        "con" => $character->_con,
-        "wis" => $character->_wis,
-        "int" => $character->_int,
-        "cha" => $character->_cha,
         "initiative" => $character->_initiative
     );
 

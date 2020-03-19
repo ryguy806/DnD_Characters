@@ -18,25 +18,11 @@ $data = json_decode(file_get_contents("php://input"));
 if(
     !empty($data->name) &&
     !empty($data->race) &&
-    !empty($data->class) &&
-    !empty($data->str) &&
-    !empty($data->str) &&
-    !empty($data->dex) &&
-    !empty($data->con) &&
-    !empty($data->wis) &&
-    !empty($data->int) &&
-    !empty($data->cha)
+    !empty($data->class)
 ){
     $character->_name= $data->name;
     $character->_race= $data->race;
     $character->_class= $data->class;
-    $character->_str= $data->str;
-    $character->_str= $data->str;
-    $character->_dex= $data->dex;
-    $character->_con= $data->con;
-    $character->_wis= $data->wis;
-    $character->_int= $data->int;
-    $character->_cha= $data->cha;
 
     if($character->create()){
 

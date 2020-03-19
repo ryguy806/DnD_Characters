@@ -27,12 +27,6 @@ if($num > 0){
             "name" => $name,
             "race" => $race,
             "class" => $class,
-            "str" => $str,
-            "dex" => $dex,
-            "con" => $con,
-            "wis" => $wis,
-            "int" => $int,
-            "cha" => $cha,
             "initiative" => $initiative
         );
 
