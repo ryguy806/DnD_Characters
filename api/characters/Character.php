@@ -15,7 +15,7 @@ class Character
     public $_wis;
     public $_int;
     public $_cha;
-    public $_initiative;
+    public $_initiative = 0;
 
     public function __construct($db, $name, $race, $class, $str, $dex, $con, $wis, $int, $cha)
     {
@@ -29,6 +29,10 @@ class Character
         $this->_wis = $wis;
         $this->_int = $int;
         $this->_cha = $cha;
+    }
+
+    public function setInitiative($initiative){
+        $this->_initiative = $initiative;
     }
 
     public function create(){
@@ -133,7 +137,7 @@ class Character
         $stmt->bindParam(':cha', $this->_cha);
         $stmt->bindParam(':initiative', $this->_initiative);
 
-        if($stmt->exwcute()){
+        if($stmt->execute()){
             return true;
         }
         return false;
