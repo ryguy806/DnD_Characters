@@ -10,6 +10,7 @@ session_start();
 $f3 = Base::instance();
 
 $characters=array();
+$f3->set('characters', $characters);
 
 $f3->route('GET /', function (){
 
@@ -36,6 +37,7 @@ $f3->route('GET /', function (){
          $wis = $_POST['wis'];
          $int = $_POST['int'];
          $cha = $_POST['cha'];
+         $initiative = $_POST['initiative'];
 
         $f3->set('name', $name);
         $f3->set('race', $race);
@@ -46,11 +48,15 @@ $f3->route('GET /', function (){
         $f3->set('wis', $wis);
         $f3->set('int', $int);
         $f3->set('cha', $cha);
+        $f3->set('initiative', $initiative);
 
         $character = new Character($db, $f3->get('name'), $f3->get('race'), $f3->get('class'), $f3->get('str'),
             $f3->get('dex'), $f3->get('con'), $f3->get('wis'), $f3->get('int'), $f3->get('cha'));
 
+        $character->setInitiative($f3->get($initiative));
         $character->create();
+
+        array_push($f3->get('characters'), $character);
 
         $f3->reroute();
      }
@@ -59,12 +65,12 @@ $f3->route('GET /', function (){
      echo $view->render('views/character_creator.html');
  });
 
- $f3->route('GET /', function (){
+ $f3->route('GET /list', function (){
 
 
 
      $view = new Template();
-     echo $view->render('views/home.html');
+     echo $view->render('views/character_viewer.html');
  });
 
 $f3->run();
